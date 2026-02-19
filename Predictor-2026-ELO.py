@@ -21,7 +21,7 @@ class F1Predictor2026:
         self.df = pd.DataFrame(self.drivers)
 
     def calculate_elo(self, current_year=2026):
-        #  Experience ELO
+        #  Experience ELO 15%
         # Veterans get stability bonus, rookies get a potential baseline
         self.df['Exp_Years'] = current_year - self.df['Debut']
         self.df['Exp_Score'] = self.df['Exp_Years'] * 10 
