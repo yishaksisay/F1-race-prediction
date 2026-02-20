@@ -24,7 +24,7 @@ db = [
     {"name": "Kimi Antonelli", "debut_year": 2025, "avg_practice_25": 7.8, "avg_quali_25": 8.5, "avg_race_25": 6.2, "pit_stop_elo": 1750}
 ]
 
-# 3. THE ELO BRAIN
+# THE ELO
 def calculate_2026_elo(driver):
     # STEP A: Practice & Quali Speed (Raw Pace - No Pits)
     speed_factor = (23 - ((driver['avg_practice_25'] + driver['avg_quali_25']) / 2)) * 10
