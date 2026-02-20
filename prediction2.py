@@ -14,8 +14,8 @@ class DriverPerformance(BaseModel):
     avg_race_25: float
     pit_stop_elo: float  # Only for Race Calculation
 
-# 2. REAL 2025 DATABASE (The 'State')
-# Based on the final 2025 results: Norris (Champion), Verstappen (Speed Leader)
+#  DATABASE
+# Based on 2025 results
 db = [
     {"name": "Lando Norris", "debut_year": 2019, "avg_practice_25": 2.8, "avg_quali_25": 2.9, "avg_race_25": 2.4, "pit_stop_elo": 1850},
     {"name": "Max Verstappen", "debut_year": 2015, "avg_practice_25": 3.1, "avg_quali_25": 3.5, "avg_race_25": 2.8, "pit_stop_elo": 1870},
