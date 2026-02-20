@@ -5,16 +5,17 @@ import uvicorn
 
 app = FastAPI(title="F1 2026 Performance Predictor", description="ELO-based ranking system for the 2026 Grid")
 
-# Player
+            # Player
 class DriverPerformance(BaseModel):
     name: str
     debut_year: int
     avg_practice_25: float
     avg_quali_25: float
     avg_race_25: float
-    pit_stop_elo: float  # Only for Race Calculation
-
-#  DATABASE
+    pit_stop_elo: float 
+    
+    # Only for Race Calculati
+         #  DATABASE
 # Based on 2025 results
 db = [
     {"name": "Lando Norris", "debut_year": 2019, "avg_practice_25": 2.8, "avg_quali_25": 2.9, "avg_race_25": 2.4, "pit_stop_elo": 1850},
@@ -26,20 +27,20 @@ db = [
 
 # THE ELO
 def calculate_2026_elo(driver):
-    # STEP A: Practice & Quali Speed (Raw Pace - No Pits)
+    #  Pace - No Pits
     speed_factor = (23 - ((driver['avg_practice_25'] + driver['avg_quali_25']) / 2)) * 10
     
-    # STEP B: Race Craft (Race Finish + Pit Reaction)
-    # Pit stops only affect this specific score
+    # Race Finish + Pit Reaction
+    # Pit stops affect this also
     race_factor = (23 - driver['avg_race_25']) * 8
     pit_factor = (driver['pit_stop_elo'] / 100) * 5
     
-    # STEP C: Career Wisdom (Years played)
+    # Years played
     experience_factor = (2026 - driver['debut_year']) * 2
     
     return round(speed_factor + race_factor + pit_factor + experience_factor, 2)
 
-# 4. API ENDPOINTS
+#  API
 @app.get("/")
 async def root():
     return {"status": "Pit Wall Online", "season": 2026}
@@ -52,7 +53,7 @@ async def get_rankings():
         score = calculate_2026_elo(d)
         scored_list.append({"player": d['name'], "elo_2026": score})
     
-    # Sorting from highest ELO to lowest
+    # Sorting highest  to lowest    elo
     return sorted(scored_list, key=lambda x: x['elo_2026'], reverse=True)
 
 @app.get("/predict/{driver_name}")
