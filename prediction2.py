@@ -5,14 +5,14 @@ import uvicorn
 
 app = FastAPI(title="F1 2026 Performance Predictor", description="ELO-based ranking system for the 2026 Grid")
 
-# 1. DATA SCHEMA (The 'Player' Object)
+# Player
 class DriverPerformance(BaseModel):
     name: str
     debut_year: int
     avg_practice_25: float
     avg_quali_25: float
     avg_race_25: float
-    pit_stop_elo: float  # Only used for Race Calculation
+    pit_stop_elo: float  # Only for Race Calculation
 
 # 2. REAL 2025 DATABASE (The 'State')
 # Based on the final 2025 results: Norris (Champion), Verstappen (Speed Leader)
